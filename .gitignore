@@ -1,0 +1,6 @@
+*#*
+*.Rhistory
+*~
+*.o
+*.so
+.DS_Store
