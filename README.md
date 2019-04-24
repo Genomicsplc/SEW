@@ -23,7 +23,7 @@ git clone --recursive https://github.com/rwdavies/SEW.git
 cd SEW
 ./scripts/install-dependencies.sh
 cd releases
-wget https://github.com/rwdavies/sew/releases/download/1.0.0/SEW_1.0.0.tar.gz ## or curl -O
+wget https://github.com/Genomicsplc/sew/releases/download/1.0.0/SEW_1.0.0.tar.gz ## or curl -O
 R CMD INSTALL SEW_1.0.0.tar.gz
 ```
 
