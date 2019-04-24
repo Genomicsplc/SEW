@@ -19,7 +19,7 @@ SEW is an R program for reference panel free, long read phasing. SEW runs on a s
 
 bioconda installation forthcoming. Otherwise, SEW can be installed in a few ways. The simplest way to get a release is as follows. First, install R. Then, do the following 
 ```
-git clone --recursive https://github.com/rwdavies/SEW.git
+git clone --recursive https://github.com/Genomicsplc/SEW.git
 cd SEW
 ./scripts/install-dependencies.sh
 cd releases
