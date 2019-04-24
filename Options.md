@@ -11,7 +11,7 @@
 * **unwindIterations** What iterations to search for flips in estimated haplotypes that increase the likelihood. See main README or paper supplement for more details
 * **phasefile** Path to phase file with truth phasing results. Empty for no phasefile. File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab seperated column, with 0 = ref and 1 = alt, separated by a vertical bar |, e.g. 0|0 or 0|1. Note therefore this file has one more row than posfile which has no header
 * **bqFilter**  Minimum BQ for a SNP in a read. Also, the algorithm uses bq<=mq, so if mapping quality is less than this, the read isnt used
-* *downsampleToCov**  What coverage to downsample individual sites to. This ensures no floating point errors at sites with really high coverage
+* **downsampleToCov**  What coverage to downsample individual sites to. This ensures no floating point errors at sites with really high coverage
 * **regionStart** When running imputation, where to start from
 * **regionEnd** When running imputation, where to stop
 * **buffer** Buffer of region to perform imputation over. Imputation is run from bases including regionStart - buffer to regionEnd + buffer, including the bases, with 1-based positions. After imputation, the VCF is shrunk to only include positions from regionStart to regionEnd, inclusive
