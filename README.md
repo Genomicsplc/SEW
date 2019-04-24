@@ -72,7 +72,7 @@ Tests in SEW are split into unit or acceptance run using ```./scripts/test-unit.
 
 ## Citation
 
-Forthcoming
+Bowden, R., Davies R. W., Heger A., Pagnamenta A. T., de Cesare M., Oikkonen L. E. et al. Sequencing of human genomes with nanopore technology. Nat. Commun 10, 1869 (2019).
 
 ## Contact and bug reports
 
