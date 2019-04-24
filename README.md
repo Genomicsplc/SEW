@@ -1,7 +1,7 @@
 SEW
 ===
-**__Current Version: pre-release__**
-Release date: Future
+**__Current Version: 1.0.0__**
+Release date: April 24, 2019
 
 [![Build Status](https://travis-ci.org/rwdavies/SEW.svg)](https://travis-ci.org/rwdavies/SEW)
 
