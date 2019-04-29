@@ -13,11 +13,11 @@ For details of past changes please see [CHANGELOG](CHANGELOG.md).
 
 SEW is an R program for reference panel free, long read phasing. SEW runs on a single sample given sequencing reads in BAM format, as well as a list of positions to phase, and outputs imputed genotypes in VCF format.
 
-## Installation and quick start on real data example
+## Installation and quick start on simulated data example
 
 ### Quick start on Linux and Mac
 
-A bioconda installation is being prepared. Otherwise, SEW can be installed in a few ways. The simplest way to get a release is as follows. First, install R. Then, do the following 
+bioconda instructions are below. Otherwise, SEW can be installed in a few ways. The simplest way to get a release is as follows. First, install R. Then, do the following 
 ```
 git clone --recursive https://github.com/Genomicsplc/SEW.git
 cd SEW
@@ -38,7 +38,17 @@ To install the latest development code in the repository, use `./scripts/build-a
 
 If you encounter problems during installation, please consult the [STITCH](https://github.com/rwdavies/STITCH) website, or raise an issue.
 
-A bioconda installation is being prepared and should be available in a few days. Installation details will appear here when this is available.
+### Install using conda
+
+SEW (as r-sew) can be installed using [conda](https://conda.io/miniconda.html). Full tutorials can be found elsewhere, but briefly, something like this should work
+```
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+conda install r-sew -c defaults -c bioconda -c conda-forge
+source activate
+R -e 'library("SEW")'
+```
+Note that currently the command like `SEW.R` is not included with the bioconda installation, so from the command line, you can either run something like `R -e 'library("SEW"); SEW(chr="10", bamlist="bamlist.txt", posfile="posfile.txt", phasefile="phasefile.txt", outputdir="./")'`, or clone the repo to get `SEW.R`. 
 
 ## Help, command line interface and common options
 
