@@ -369,12 +369,12 @@ SEW <- function(
         L <- out$L
         nSNPs <- out$nSNPs
         ## ugh, workaround for now
-        if (length(dim(eHapsCurrent_tc)) == 2) {
+        if (length(dim(out$eHapsCurrent_tc)) == 2) {
             ## release 1.6.2 behaviour
             eHapsCurrent <- t(out$eHapsCurrent_tc)
         } else {
             ## after release 1.6.2 behaviour
-            eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1, drop = TRUE])            
+            eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1, drop = TRUE])
         }
         eHapsUpdate_numer <- out$eHapsUpdate_numer
         eHapsUpdate_denom <- out$eHapsUpdate_denom
