@@ -3,6 +3,7 @@ if ( 1 == 0 ) {
     library("testthat")
     library("SEW")
     dir <- "~/Google Drive/SEW/"
+    dir <- "~/proj/SEW/"
     setwd(paste0(dir, "/SEW/R"))
     a <- dir(pattern = "*R")
     b <- grep("~", a)
