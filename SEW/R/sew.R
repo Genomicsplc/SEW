@@ -368,7 +368,14 @@ SEW <- function(
         alleleCount <- out$alleleCount
         L <- out$L
         nSNPs <- out$nSNPs
-        eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1]) ## argh
+        ## ugh, workaround for now
+        if (length(dim(eHapsCurrent_tc)) == 2) {
+            ## release 1.6.2 behaviour
+            eHapsCurrent <- t(out$eHapsCurrent_tc)
+        } else {
+            ## after release 1.6.2 behaviour
+            eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1, drop = TRUE])            
+        }
         eHapsUpdate_numer <- out$eHapsUpdate_numer
         eHapsUpdate_denom <- out$eHapsUpdate_denom
         strandedness <- out$strandedness
