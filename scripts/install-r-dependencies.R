@@ -12,6 +12,6 @@ for(package in required_packages) {
 }
 if (!suppressPackageStartupMessages(require("rrbgen")))
     install.packages("https://github.com/rwdavies/rrbgen/releases/download/0.0.6/rrbgen_0.0.6.tar.gz", repos=NULL)
-if (!suppressPackageStartupMessages(require("stitch")))
-    install.packages("https://github.com/rwdavies/STITCH/releases/download/1.5.5/STITCH_1.5.5.tar.gz", repos=NULL)
+if (!suppressPackageStartupMessages(require("STITCH")))
+    install.packages("https://github.com/rwdavies/STITCH/releases/download/1.6.2/STITCH_1.6.2.tar.gz", repos=NULL)
 

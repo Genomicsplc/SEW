@@ -94,7 +94,6 @@ SEW <- function(
     inputBundleBlockSize <- NA
     nCores <- 1 ## 1 sample, nothing operates on cores
     ##
-    environment <- "server"
 
     ##
     ## specify output description
@@ -244,12 +243,12 @@ SEW <- function(
     ##
     ## either generate the data, or load it from before
     ##
-    STITCH::generate_or_refactor_input(regenerateInput = regenerateInput, bundling_info = bundling_info, L = L, pos = pos, nSNPs = nSNPs, bam_files = bam_files, cram_files = cram_files, reference = reference, iSizeUpperLimit = iSizeUpperLimit, bqFilter = bqFilter, chr = chr, outputdir = outputdir, N = N, downsampleToCov = downsampleToCov, sampleNames = sampleNames, inputdir = inputdir, useSoftClippedBases = useSoftClippedBases, regionName = regionName, tempdir = tempdir, chrStart = chrStart, chrEnd = chrEnd, generateInputOnly = generateInputOnly, environment = environment, nCores = nCores, save_sampleReadsInfo = save_sampleReadsInfo)    
+    STITCH::generate_or_refactor_input(regenerateInput = regenerateInput, bundling_info = bundling_info, L = L, pos = pos, nSNPs = nSNPs, bam_files = bam_files, cram_files = cram_files, reference = reference, iSizeUpperLimit = iSizeUpperLimit, bqFilter = bqFilter, chr = chr, outputdir = outputdir, N = N, downsampleToCov = downsampleToCov, sampleNames = sampleNames, inputdir = inputdir, useSoftClippedBases = useSoftClippedBases, regionName = regionName, tempdir = tempdir, chrStart = chrStart, chrEnd = chrEnd, generateInputOnly = generateInputOnly, nCores = nCores, save_sampleReadsInfo = save_sampleReadsInfo)    
 
     ##
     ## if necessary, shrink BAMs, but only if regenerateInput = FALSE
     ##
-    STITCH::shrinkReads(N = N, nCores = nCores, originalRegionName = originalRegionName, regionName = regionName, bundling_info = bundling_info, tempdir = tempdir, inputdir = inputdir, inRegionL = inRegionL, environment = environment, regenerateInput = regenerateInput, inputBundleBlockSize = inputBundleBlockSize)
+    STITCH::shrinkReads(N = N, nCores = nCores, originalRegionName = originalRegionName, regionName = regionName, bundling_info = bundling_info, tempdir = tempdir, inputdir = inputdir, inRegionL = inRegionL, regenerateInput = regenerateInput, inputBundleBlockSize = inputBundleBlockSize)
     
 
     ##
@@ -353,8 +352,11 @@ SEW <- function(
                 outputdir, "RData", paste0("EM.all.", regionName, ".withBuffer.RData")
             )
         )
+        ## for STITCH>=1.6.0, need eHapsCurrent_tc
+        eHapsCurrent_tc <- array(NA, c(2, nSNPs, 1))
+        eHapsCurrent_tc[, , 1] <- t(eHapsCurrent)
         ##
-        out <- STITCH::remove_buffer_from_variables(L = L,  regionStart = regionStart, regionEnd = regionEnd, pos = pos, gen = gen, phase = phase, alleleCount =  alleleCount, highCovInLow = highCovInLow, eHapsCurrent_t = t(eHapsCurrent), eHapsUpdate_numer = eHapsUpdate_numer, eHapsUpdate_denom = eHapsUpdate_denom, strandedness = strandedness, phase_entropy = phase_entropy, gridWindowSize = NA)
+        out <- STITCH::remove_buffer_from_variables(L = L,  regionStart = regionStart, regionEnd = regionEnd, pos = pos, gen = gen, phase = phase, alleleCount =  alleleCount, highCovInLow = highCovInLow, eHapsCurrent_tc = eHapsCurrent_tc, eHapsUpdate_numer = eHapsUpdate_numer, eHapsUpdate_denom = eHapsUpdate_denom, strandedness = strandedness, phase_entropy = phase_entropy, gridWindowSize = NA)
         phase_set <- remove_buffer_from_phase_set(
             phase_set = phase_set,
             L = L,
@@ -366,7 +368,7 @@ SEW <- function(
         alleleCount <- out$alleleCount
         L <- out$L
         nSNPs <- out$nSNPs
-        eHapsCurrent <- t(out$eHapsCurrent_t) ## argh
+        eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1]) ## argh
         eHapsUpdate_numer <- out$eHapsUpdate_numer
         eHapsUpdate_denom <- out$eHapsUpdate_denom
         strandedness <- out$strandedness

@@ -82,7 +82,7 @@ calculate_strandedness <- function(
     sampleReadsInfo <- sampleReadsInfo[kept_reads, ]
     sampleReads <- sampleReads[kept_reads]
     ## 
-    strand <- match(as.character(sampleReadsInfo[, -1]), c("-", "+")) - 1
+    strand <- match(as.character(sampleReadsInfo[, "strand"]), c("-", "+")) - 1
     if (length(strand) != nrow(p_h_given_O)) {
         print_message(paste0("length(strand) = ", length(strand)))
         print_message(paste0("nrow(p_h_given_O) = ", nrow(p_h_given_O))) 
@@ -92,6 +92,7 @@ calculate_strandedness <- function(
         p_h1 = p_h_given_O[, 1],
         p_h2 = p_h_given_O[, 2]
     )
+    
     ## make output matrix
     ## for each SNP - add to 8 counts
     out <- array(0, c(nSNPs, 2, 2, 2))
