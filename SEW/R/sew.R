@@ -368,7 +368,14 @@ SEW <- function(
         alleleCount <- out$alleleCount
         L <- out$L
         nSNPs <- out$nSNPs
+        ##
+        print(out)
+        print(dim(eHapsCurrent_tc))
+        print(out$eHapsCurrent_tc)
+        print(dim(out$eHapsCurrent_tc[, , 1]))
+        print(t(out$eHapsCurrent_tc[, , 1]))
         eHapsCurrent <- t(out$eHapsCurrent_tc[, , 1]) ## argh
+        stop("unclear github error")
         eHapsUpdate_numer <- out$eHapsUpdate_numer
         eHapsUpdate_denom <- out$eHapsUpdate_denom
         strandedness <- out$strandedness
