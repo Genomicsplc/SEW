@@ -42,7 +42,9 @@ SEW(
   niterations = 300,
   plotHapSumDuringIterations = FALSE,
   very_verbose = FALSE,
-  keepSampleReadsInRAM = FALSE
+  keepSampleReadsInRAM = FALSE,
+  use_bx_tag = TRUE,
+  bxTagUpperLimit = 50000
 )
 }
 \arguments{
@@ -119,6 +121,10 @@ SEW(
 \item{very_verbose}{Boolean TRUE/FALSE about whether to print additional values which may be helpeful for understanding how the model operates}
 
 \item{keepSampleReadsInRAM}{Whether to (generally) keep sampleReads in RAM or store them in the temporary directory. SEW will be faster if this is FALSE at the expense of RAM}
+
+\item{use_bx_tag}{Whether to try and use BX tag in same to indicate that reads come from the same underlying molecule}
+
+\item{bxTagUpperLimit}{When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules}
 }
 \value{
 Results in properly formatted version

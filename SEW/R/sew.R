@@ -36,6 +36,8 @@
 #' @param plotHapSumDuringIterations Boolean TRUE/FALSE about whether to make a plot that shows the relative number of individuals using each ancestral haplotype in each iteration
 #' @param very_verbose Boolean TRUE/FALSE about whether to print additional values which may be helpeful for understanding how the model operates
 #' @param keepSampleReadsInRAM Whether to (generally) keep sampleReads in RAM or store them in the temporary directory. SEW will be faster if this is FALSE at the expense of RAM
+#' @param use_bx_tag Whether to try and use BX tag in same to indicate that reads come from the same underlying molecule
+#' @param bxTagUpperLimit When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules
 #' @return Results in properly formatted version
 #' @author Robert Davies
 #' @export
@@ -77,7 +79,9 @@ SEW <- function(
     niterations = 300,
     plotHapSumDuringIterations = FALSE,
     very_verbose = FALSE,
-    keepSampleReadsInRAM = FALSE
+    keepSampleReadsInRAM = FALSE,
+    use_bx_tag = TRUE,
+    bxTagUpperLimit = 50000    
  ) {
 
 
@@ -243,7 +247,7 @@ SEW <- function(
     ##
     ## either generate the data, or load it from before
     ##
-    STITCH::generate_or_refactor_input(regenerateInput = regenerateInput, bundling_info = bundling_info, L = L, pos = pos, nSNPs = nSNPs, bam_files = bam_files, cram_files = cram_files, reference = reference, iSizeUpperLimit = iSizeUpperLimit, bqFilter = bqFilter, chr = chr, outputdir = outputdir, N = N, downsampleToCov = downsampleToCov, sampleNames = sampleNames, inputdir = inputdir, useSoftClippedBases = useSoftClippedBases, regionName = regionName, tempdir = tempdir, chrStart = chrStart, chrEnd = chrEnd, generateInputOnly = generateInputOnly, nCores = nCores, save_sampleReadsInfo = save_sampleReadsInfo)    
+    STITCH::generate_or_refactor_input(regenerateInput = regenerateInput, bundling_info = bundling_info, L = L, pos = pos, nSNPs = nSNPs, bam_files = bam_files, cram_files = cram_files, reference = reference, iSizeUpperLimit = iSizeUpperLimit, bqFilter = bqFilter, chr = chr, outputdir = outputdir, N = N, downsampleToCov = downsampleToCov, sampleNames = sampleNames, inputdir = inputdir, useSoftClippedBases = useSoftClippedBases, regionName = regionName, tempdir = tempdir, chrStart = chrStart, chrEnd = chrEnd, generateInputOnly = generateInputOnly, nCores = nCores, save_sampleReadsInfo = save_sampleReadsInfo, use_bx_tag = use_bx_tag, bxTagUpperLimit = bxTagUpperLimit)    
 
     ##
     ## if necessary, shrink BAMs, but only if regenerateInput = FALSE
