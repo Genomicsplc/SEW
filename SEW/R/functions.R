@@ -78,14 +78,12 @@ calculate_strandedness <- function(
     load(STITCH::file_sampleReads(inputdir, 1, regionName))    
     load(STITCH::file_sampleReadsInfo(inputdir, iBam, regionName))
     ## remove reads previously removed
-
     sampleReadsInfo <- sampleReadsInfo[kept_reads, ]
     sampleReads <- sampleReads[kept_reads]
-    ## 
     strand <- match(as.character(sampleReadsInfo[, "strand"]), c("-", "+")) - 1
     if (length(strand) != nrow(p_h_given_O)) {
         print_message(paste0("length(strand) = ", length(strand)))
-        print_message(paste0("nrow(p_h_given_O) = ", nrow(p_h_given_O))) 
+        print_message(paste0("nrow(p_h_given_O) = ", nrow(p_h_given_O)))
     }
     m <- cbind(
         strand = strand,

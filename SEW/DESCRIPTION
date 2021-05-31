@@ -12,7 +12,7 @@ Depends: parallel
 Imports: Rcpp, data.table, STITCH (>= 1.5.5)
 LinkingTo: Rcpp, RcppArmadillo
 Packaged: 2017-02-14 13:27:59 UTC; rdavies
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 License: BSD3
 SystemRequirements: C++11
 NeedsCompilation: yes
