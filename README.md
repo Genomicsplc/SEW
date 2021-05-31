@@ -3,7 +3,7 @@ SEW
 **__Current Version: 1.0.0__**
 Release date: April 24, 2019
 
-[![Build Status](https://travis-ci.org/Genomicsplc/SEW.svg?branch=master)](https://travis-ci.org/Genomicsplc/SEW)
+[![Build Status](https://travis-ci.org/rwdavies/SEW.svg?branch=master)](https://travis-ci.org/rwdavies/SEW)
 
 Changes in latest version
 
