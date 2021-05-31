@@ -222,6 +222,18 @@ option_list <- list(
         type = "logical",
         help = "Whether to (generally) keep sampleReads in RAM or store them in the temporary directory. SEW will be faster if this is FALSE at the expense of RAM [default FALSE] ",
         default = FALSE
+    ), 
+    make_option(
+        "--use_bx_tag",
+        type = "logical",
+        help = "Whether to try and use BX tag in same to indicate that reads come from the same underlying molecule [default TRUE] ",
+        default = TRUE
+    ), 
+    make_option(
+        "--bxTagUpperLimit",
+        type = "integer",
+        help = "When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules [default 50000    ] ",
+        default = 50000    
     )
 )
 opt <- suppressWarnings(parse_args(OptionParser(option_list = option_list)))
@@ -264,5 +276,7 @@ SEW(
     niterations = opt$niterations,
     plotHapSumDuringIterations = opt$plotHapSumDuringIterations,
     very_verbose = opt$very_verbose,
-    keepSampleReadsInRAM = opt$keepSampleReadsInRAM
+    keepSampleReadsInRAM = opt$keepSampleReadsInRAM,
+    use_bx_tag = opt$use_bx_tag,
+    bxTagUpperLimit = opt$bxTagUpperLimit
 )
