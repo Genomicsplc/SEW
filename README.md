@@ -1,13 +1,13 @@
 SEW
 ===
-**__Current Version: 1.0.0__**
-Release date: April 24, 2019
+**__Current Version: 1.0.1__**
+Release date: June 8, 2021
 
 [![Build Status](https://travis-ci.org/rwdavies/SEW.svg?branch=master)](https://travis-ci.org/rwdavies/SEW)
 
 Changes in latest version
 
-1. Initial release
+1. Update dependencies
 
 For details of past changes please see [CHANGELOG](CHANGELOG.md).
 
@@ -23,8 +23,8 @@ git clone --recursive https://github.com/Genomicsplc/SEW.git
 cd SEW
 ./scripts/install-dependencies.sh
 mkdir -p releases && cd releases
-wget https://github.com/Genomicsplc/sew/releases/download/1.0.0/SEW_1.0.0.tar.gz ## or curl -O
-R CMD INSTALL SEW_1.0.0.tar.gz
+wget https://github.com/Genomicsplc/sew/releases/download/1.0.1/SEW_1.0.1.tar.gz ## or curl -O
+R CMD INSTALL SEW_1.0.1.tar.gz
 ```
 
 A quick test (using simulated data) can be performed using 

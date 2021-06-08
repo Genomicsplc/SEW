@@ -1,15 +1,15 @@
 Package: SEW
 Type: Package
 Title: SEW
-Version: 1.0.0
-Date: 2019-04-24
+Version: 1.0.1
+Date: 2021-06-08
 Author: Robert William Davies
 Maintainer: Robert William Davies <robertwilliamdavies@gmail.com>
 Description: SEW performs single sample, long read phasing without a reference panel. 
 Installation: See website, or use something like R CMD INSTALL SEW.tar.gz
 Getting started: See website
 Depends: parallel
-Imports: Rcpp, data.table, STITCH (>= 1.5.5)
+Imports: Rcpp, data.table, STITCH (>= 1.6.6)
 LinkingTo: Rcpp, RcppArmadillo
 Packaged: 2017-02-14 13:27:59 UTC; rdavies
 RoxygenNote: 7.1.1
