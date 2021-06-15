@@ -576,7 +576,8 @@ single_sample_phasing_em_complete <- function(
         }
 
         if (is.null(phase) == FALSE) {
-            pse <- STITCH::calculate_pse(test = eHapsCurrent, truth = phase[, 1, ])
+            w <- !is.na(eHapsCurrent[, 1])            
+            pse <- STITCH::calculate_pse(test = eHapsCurrent[w, ], truth = phase[w, 1, ])
             print_message(paste0("The PSE is ", pse))
         }
     }
