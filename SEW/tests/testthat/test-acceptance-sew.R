@@ -2,7 +2,6 @@ if ( 1 == 0 ) {
 
     library("testthat")
     library("SEW")
-    dir <- "~/Google Drive/SEW/"
     dir <- "~/proj/SEW/"
     setwd(paste0(dir, "/SEW/R"))
     a <- dir(pattern = "*R")
@@ -42,6 +41,28 @@ test_that("SEW can phase a sample at high coverage with long reads", {
         phasefile = data_package$phasefile,
         niterations = 25,
         very_verbose = TRUE
+    )
+
+    check_sew_output(
+        file = file.path(outputdir, paste0("sew.", data_package$chr, ".vcf.gz")),
+        data_package
+    )
+
+})
+
+
+test_that("SEW can run without heuristics", {
+
+    outputdir <- STITCH::make_unique_tempdir()    
+    SEW(
+        chr = data_package$chr,
+        bamlist = data_package$bamlist,
+        posfile = data_package$posfile,
+        outputdir = outputdir,
+        phasefile = data_package$phasefile,
+        niterations = 25,
+        very_verbose = TRUE,
+        disable_heuristics = TRUE
     )
 
     check_sew_output(

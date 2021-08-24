@@ -134,6 +134,12 @@ option_list <- list(
         default = "c(5, 5, 1, 1, 1, 1, 1, 1)"
     ), 
     make_option(
+        "--usePhaseSet_unwindIterations",
+        type = "character",
+        help = "When performing an unwind iteration, whether in that iteration to use phase set to restrict unwindings to 1 per phase set [default c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)] ",
+        default = "c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)"
+    ), 
+    make_option(
         "--save_sampleReadsInfo",
         type = "logical",
         help = "Experimental. Boolean TRUE/FALSE about whether to save additional information about the reads that were extracted [default TRUE] ",
@@ -232,8 +238,14 @@ option_list <- list(
     make_option(
         "--bxTagUpperLimit",
         type = "integer",
-        help = "When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules [default 50000    ] ",
-        default = 50000    
+        help = "When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules [default 50000] ",
+        default = 50000
+    ), 
+    make_option(
+        "--disable_heuristics",
+        type = "logical",
+        help = "Disable unwinding heuristics [default FALSE] ",
+        default = FALSE
     )
 )
 opt <- suppressWarnings(parse_args(OptionParser(option_list = option_list)))
@@ -262,6 +274,7 @@ SEW(
     regenerateInputWithDefaultValues = opt$regenerateInputWithDefaultValues,
     unwindIterations = eval(parse(text=opt$unwindIterations)),
     sample_unwindIterations = eval(parse(text=opt$sample_unwindIterations)),
+    usePhaseSet_unwindIterations = eval(parse(text=opt$usePhaseSet_unwindIterations)),
     save_sampleReadsInfo = opt$save_sampleReadsInfo,
     outputInputInVCFFormat = opt$outputInputInVCFFormat,
     downsampleToCov = opt$downsampleToCov,
@@ -278,5 +291,6 @@ SEW(
     very_verbose = opt$very_verbose,
     keepSampleReadsInRAM = opt$keepSampleReadsInRAM,
     use_bx_tag = opt$use_bx_tag,
-    bxTagUpperLimit = opt$bxTagUpperLimit
+    bxTagUpperLimit = opt$bxTagUpperLimit,
+    disable_heuristics = opt$disable_heuristics
 )

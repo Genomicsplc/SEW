@@ -27,7 +27,8 @@ SEW(
   regenerateInputWithDefaultValues = FALSE,
   unwindIterations = c(40, 70, 100, 120, 140, 160, 180, 200),
   sample_unwindIterations = c(5, 5, 1, 1, 1, 1, 1, 1),
-  usePhaseSet_unwindIterations = c(rep(FALSE, 8)),
+  usePhaseSet_unwindIterations = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+    FALSE),
   save_sampleReadsInfo = TRUE,
   outputInputInVCFFormat = FALSE,
   downsampleToCov = 200,
@@ -44,7 +45,8 @@ SEW(
   very_verbose = FALSE,
   keepSampleReadsInRAM = FALSE,
   use_bx_tag = TRUE,
-  bxTagUpperLimit = 50000
+  bxTagUpperLimit = 50000,
+  disable_heuristics = FALSE
 )
 }
 \arguments{
@@ -92,6 +94,8 @@ SEW(
 
 \item{sample_unwindIterations}{When performing an unwind iterations, how often to check a SNP for an improvement following unwinding. 1 means check all SNPs}
 
+\item{usePhaseSet_unwindIterations}{When performing an unwind iteration, whether in that iteration to use phase set to restrict unwindings to 1 per phase set}
+
 \item{save_sampleReadsInfo}{Experimental. Boolean TRUE/FALSE about whether to save additional information about the reads that were extracted}
 
 \item{outputInputInVCFFormat}{Whether to output the input in vcf format}
@@ -125,6 +129,8 @@ SEW(
 \item{use_bx_tag}{Whether to try and use BX tag in same to indicate that reads come from the same underlying molecule}
 
 \item{bxTagUpperLimit}{When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules}
+
+\item{disable_heuristics}{Disable unwinding heuristics}
 }
 \value{
 Results in properly formatted version

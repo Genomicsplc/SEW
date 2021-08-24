@@ -21,6 +21,7 @@
 #' @param regenerateInputWithDefaultValues If regenerateInput is FALSE and the original input data was made using regionStart, regionEnd and buffer as default values, set this equal to TRUE
 #' @param unwindIterations What iterations to search for flips in estimated haplotypes that increase the likelihood
 #' @param sample_unwindIterations When performing an unwind iterations, how often to check a SNP for an improvement following unwinding. 1 means check all SNPs
+#' @param usePhaseSet_unwindIterations When performing an unwind iteration, whether in that iteration to use phase set to restrict unwindings to 1 per phase set
 #' @param save_sampleReadsInfo Experimental. Boolean TRUE/FALSE about whether to save additional information about the reads that were extracted
 #' @param outputInputInVCFFormat Whether to output the input in vcf format
 #' @param downsampleToCov What coverage to downsample individual sites to. This ensures no floating point errors at sites with really high coverage
@@ -38,6 +39,7 @@
 #' @param keepSampleReadsInRAM Whether to (generally) keep sampleReads in RAM or store them in the temporary directory. SEW will be faster if this is FALSE at the expense of RAM
 #' @param use_bx_tag Whether to try and use BX tag in same to indicate that reads come from the same underlying molecule
 #' @param bxTagUpperLimit When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules
+#' @param disable_heuristics Disable unwinding heuristics
 #' @return Results in properly formatted version
 #' @author Robert Davies
 #' @export
@@ -64,7 +66,7 @@ SEW <- function(
     regenerateInputWithDefaultValues = FALSE,
     unwindIterations = c(40, 70, 100, 120, 140, 160, 180, 200),
     sample_unwindIterations = c(5, 5, 1, 1, 1, 1, 1, 1),
-    usePhaseSet_unwindIterations = c(rep(FALSE, 8)),
+    usePhaseSet_unwindIterations = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
     save_sampleReadsInfo = TRUE,
     outputInputInVCFFormat = FALSE,
     downsampleToCov = 200,
@@ -81,7 +83,8 @@ SEW <- function(
     very_verbose = FALSE,
     keepSampleReadsInRAM = FALSE,
     use_bx_tag = TRUE,
-    bxTagUpperLimit = 50000    
+    bxTagUpperLimit = 50000,
+    disable_heuristics = FALSE
  ) {
 
 
@@ -108,6 +111,12 @@ SEW <- function(
         regionName <- paste0(chr, ".", regionStart,".", regionEnd)
 
 
+    if (disable_heuristics) {
+        ## set these to irrelevant values
+        unwindIterations <- niterations + 10
+        sample_unwindIterations <- 1
+        usePhaseSet_unwindIterations <- FALSE
+    }
 
     ##
     ## validate parameters
