@@ -246,6 +246,12 @@ option_list <- list(
         type = "logical",
         help = "Disable unwinding heuristics [default FALSE] ",
         default = FALSE
+    ), 
+    make_option(
+        "--remove_homo",
+        type = "logical",
+        help = "Remove homozygous variants when running [default FALSE] ",
+        default = FALSE
     )
 )
 opt <- suppressWarnings(parse_args(OptionParser(option_list = option_list)))
@@ -292,5 +298,6 @@ SEW(
     keepSampleReadsInRAM = opt$keepSampleReadsInRAM,
     use_bx_tag = opt$use_bx_tag,
     bxTagUpperLimit = opt$bxTagUpperLimit,
-    disable_heuristics = opt$disable_heuristics
+    disable_heuristics = opt$disable_heuristics,
+    remove_homo = opt$remove_homo
 )

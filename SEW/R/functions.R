@@ -507,7 +507,8 @@ single_sample_phasing_em_complete <- function(
             sampleReads <- sampleReads[to_keep]
             ## here, of those that are still kept, remove as appropriate
             kept_reads[kept_reads][to_remove] <- FALSE
-            N_r <- length(sampleReads)            
+            N_r <- length(sampleReads)
+            print_message(paste0("There are currently ", N_r, " reads remaining"))
             p_reads <- p_reads[to_keep]
             p_reads_given_hap_k <- p_reads_given_hap_k[to_keep, ]
             p_h_given_O <- p_h_given_O[to_keep, ]
@@ -1084,8 +1085,10 @@ plot_pileup <- function(eHapsUpdate_numer, eHapsUpdate_denom, k, which_snps) {
 
 plot_phase <- function(phase, which_snps) {
     par(mar = c(2, 2, 2, 2))
-    x <- 1:length(which_snps)
-    xlim <- c(0, length(x))
+    x <- which_snps    
+    xlim <- range(which_snps)    
+    ## x <- 1:length(which_snps)
+    ## xlim <- c(0, length(x))
     ylim <- c(0, 2)
     plot(x = 0, y = 0, xlim = xlim, ylim = ylim, xlab = "", ylab = "", axes = TRUE, col = "white")
     for(k in 1:2) {
@@ -1098,7 +1101,7 @@ plot_phase <- function(phase, which_snps) {
 
 phase_add_points <- function(which_snps, which_reads, sampleReads, max_depth = 100) {
     par(mar = c(2, 2, 2, 2))    
-    xlim <- c(0, length(which_snps))
+    xlim <- c(1, length(which_snps))
     ylim <- c(0, max_depth) # plot up
     plot(x = 0, y = 0, xlim = xlim, ylim = ylim, xlab = "", ylab = "", axes = FALSE, col = "white")
     axis(side = 1, at = 1:length(which_snps), labels = which_snps)
@@ -1159,7 +1162,7 @@ phase_debug_plot <- function(
     pdf(file = plot_name, height = 12, width = 8)#, units = "in", res = 300)
     par(fig = c(0, 1, 0.5, 1), new = FALSE)    
     plotted <- phase_add_points(which_snps, which_reads, sampleReads)
-    if (is.null(phase)) {
+    if (!is.null(phase)) {
         par(fig = c(0, 1, 2/6, 3 / 6), new = TRUE)
         plot_phase(phase, which_snps)
     }

@@ -36,7 +36,7 @@ make_STITCH_cli(
     integer_vectors = c("unwindIterations", "sample_unwindIterations"),
     character_vectors = c("usePhaseSet_unwindIterations"),
     other_character_params = c("phasefile", "unwindIterations", "sample_unwindIterations", "usePhaseSet_unwindIterations"),
-    other_logical_params = c("outputHaplotypeProbabilities", "very_verbose", "use_bx_tag", "disable_heuristics"),
+    other_logical_params = c("outputHaplotypeProbabilities", "very_verbose", "use_bx_tag", "disable_heuristics", "remove_homo"),
     other_integer_params = c("bxTagUpperLimit"),
     function_name = "SEW",
     library_name = "SEW"

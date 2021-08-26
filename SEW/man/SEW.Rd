@@ -46,7 +46,8 @@ SEW(
   keepSampleReadsInRAM = FALSE,
   use_bx_tag = TRUE,
   bxTagUpperLimit = 50000,
-  disable_heuristics = FALSE
+  disable_heuristics = FALSE,
+  remove_homo = FALSE
 )
 }
 \arguments{
@@ -131,6 +132,8 @@ SEW(
 \item{bxTagUpperLimit}{When using BX tag, at what distance between reads to consider reads with the same BX tag to come from different molecules}
 
 \item{disable_heuristics}{Disable unwinding heuristics}
+
+\item{remove_homo}{Remove homozygous variants when running}
 }
 \value{
 Results in properly formatted version
